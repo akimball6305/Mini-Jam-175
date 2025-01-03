@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9165317177280726801}
   - component: {fileID: 2293985377586726329}
   - component: {fileID: 232306870261577172}
-  - component: {fileID: 6336510790632951136}
+  - component: {fileID: 7243932994915089556}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Untagged
@@ -103,6 +103,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  groundDrag: 5
+  jumpForce: 12
+  jumpCooldown: 0.25
+  airMultiplier: 2
+  walkSpeed: 0
+  sprintSpeed: 0
+  jumpKey: 32
+  playerHeight: 3
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
   orientation: {fileID: 684094883381700115}
 --- !u!65 &232306870261577172
 BoxCollider:
@@ -125,7 +136,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.7377372, z: 1}
   m_Center: {x: 0, y: 0.05135119, z: 0}
---- !u!54 &6336510790632951136
+--- !u!54 &7243932994915089556
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

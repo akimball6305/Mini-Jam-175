@@ -167,34 +167,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2293985377586726329, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      propertyPath: jumpForce
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2293985377586726329, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      propertyPath: moveSpeed
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2293985377586726329, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      propertyPath: groundDrag
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2293985377586726329, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      propertyPath: jumpCooldown
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2293985377586726329, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      propertyPath: playerHeight
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2293985377586726329, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      propertyPath: airMultiplier
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2293985377586726329, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 9179314129153371410, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
       propertyPath: m_Name
       value: Player
@@ -202,10 +174,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2952357006000990543, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1918260026}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
 --- !u!1 &26410662
 GameObject:
@@ -752,38 +721,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 436150653751712982, guid: 223831866495dcb42bf574a211fa469c, type: 3}
   m_PrefabInstance: {fileID: 807296781}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1918260020 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2952357006000990543, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
-  m_PrefabInstance: {fileID: 12440065}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1918260026
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918260020}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1920773681
 GameObject:
   m_ObjectHideFlags: 0

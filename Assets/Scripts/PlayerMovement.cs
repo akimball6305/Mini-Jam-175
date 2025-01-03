@@ -6,11 +6,13 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
 
     public float groundDrag;
+    public float airResistance;
 
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
+    public float maxVelocity;
 
     [SerializeField] public float walkSpeed;
     [SerializeField] public float sprintSpeed;
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+    
 
     private void Start()
     {
@@ -58,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxVelocity);
+        Vector3 airResistanceForce = -rb.linearVelocity * airResistance;
+        rb.AddForce(airResistanceForce);
     }
 
     private void MyInput()
@@ -87,7 +93,10 @@ public class PlayerMovement : MonoBehaviour
 
         // in air
         else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        { 
+        float airSpeed = moveSpeed * airMultiplier;
+        rb.AddForce(moveDirection.normalized * airSpeed * 10f, ForceMode.Force);
+        }
     }
 
     private void SpeedControl()

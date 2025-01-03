@@ -174,8 +174,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5176651490205801253, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 12440067}
   m_SourcePrefab: {fileID: 100100000, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
+--- !u!1 &12440066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5176651490205801253, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
+  m_PrefabInstance: {fileID: 12440065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &12440067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12440066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919d26651cdfcc142a615d58d5546d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  fpsCam: {fileID: 0}
+  maxammo: 3
+  reloadTime: 1
 --- !u!1 &26410662
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +624,7 @@ GameObject:
   - component: {fileID: 1276962800}
   - component: {fileID: 1276962799}
   - component: {fileID: 1276962798}
+  - component: {fileID: 1276962802}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -696,6 +721,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1276962802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276962797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113b8b4ff0009a64d9705c1f031538f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
 --- !u!4 &1364162164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 339403129194889296, guid: 69891101ad131164c90ad5a0c5b5de14, type: 3}
@@ -961,9 +999,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   groundDrag: 0
+  airResistance: 0
   jumpForce: 0
   jumpCooldown: 0
   airMultiplier: 0
+  maxVelocity: 0
   walkSpeed: 0
   sprintSpeed: 0
   jumpKey: 32

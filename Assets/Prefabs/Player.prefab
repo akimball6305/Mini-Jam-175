@@ -103,6 +103,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  groundDrag: 0
+  jumpForce: 0
+  jumpCooldown: 0
+  airMultiplier: 0
+  walkSpeed: 0
+  sprintSpeed: 0
+  jumpKey: 32
+  playerHeight: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
   orientation: {fileID: 684094883381700115}
 --- !u!65 &232306870261577172
 BoxCollider:
@@ -475,10 +486,34 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 436150653751712982, guid: 223831866495dcb42bf574a211fa469c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 684094883381700115}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4762440470039871433, guid: 223831866495dcb42bf574a211fa469c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2514638646890397977}
   m_SourcePrefab: {fileID: 100100000, guid: 223831866495dcb42bf574a211fa469c, type: 3}
 --- !u!4 &273940913094522938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 436150653751712982, guid: 223831866495dcb42bf574a211fa469c, type: 3}
   m_PrefabInstance: {fileID: 414541698289181932}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5176651490205801253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4762440470039871433, guid: 223831866495dcb42bf574a211fa469c, type: 3}
+  m_PrefabInstance: {fileID: 414541698289181932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2514638646890397977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5176651490205801253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919d26651cdfcc142a615d58d5546d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  fpsCam: {fileID: 4729757490773237642}
+  maxammo: 30
+  reloadTime: 1

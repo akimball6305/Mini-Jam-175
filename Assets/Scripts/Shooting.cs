@@ -18,13 +18,20 @@ public class Shooting : MonoBehaviour
     Animator playerAnimator;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject Player;
+    AudioSource gunShot;
+    [SerializeField] AudioSource reload;
 
     public bool IsShooting => playerAnimator.GetBool("isShooting");
     public bool IsReloading => playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("isReloading");
 
+    [Header("Audio Fade Settings")]
+    public float fadeOutDuration = 0.3f;
+    private Coroutine fadeOutCoroutine;
+
 
     private void Start()
     {
+        gunShot = GetComponent<AudioSource>();
         currentammo = maxammo;
         playerAnimator = Player.GetComponent<Animator>();
 
@@ -72,10 +79,11 @@ public class Shooting : MonoBehaviour
         currentammo--;
 
         ResetAnimationTriggers();
+        reload.Stop();
         playerAnimator.SetTrigger("ShootSingle");
         muzzleFlash.Play();
+        gunShot.Play();
         PerformRaycast();
-        //muzzleFlash.Stop();
     }
 
     void ShootContinuous()
@@ -85,15 +93,23 @@ public class Shooting : MonoBehaviour
         currentammo--;
 
         playerAnimator.SetBool("isShooting", true);
+        reload.Stop();
         muzzleFlash.Play();
+        gunShot.Play();
         PerformRaycast();
-        
     }
 
     void StopShooting()
     {
         playerAnimator.SetBool("isShooting", false);
         muzzleFlash.Stop();
+
+        // Start fading out the audio instead of stopping abruptly
+        if (fadeOutCoroutine != null)
+        {
+            StopCoroutine(fadeOutCoroutine);
+        }
+        fadeOutCoroutine = StartCoroutine(FadeOutAudio());
     }
 
     IEnumerator Reload()
@@ -103,7 +119,7 @@ public class Shooting : MonoBehaviour
 
         ResetAnimationTriggers();
         playerAnimator.SetTrigger("isReloading");
-
+        reload.Play();
         Debug.Log("Reloading...");
         yield return new WaitForSeconds(reloadTime);
 
@@ -114,6 +130,21 @@ public class Shooting : MonoBehaviour
         ResetAnimationTriggers();
         playerAnimator.ResetTrigger("isReloading");
         Debug.Log("Reload Complete");
+    }
+
+    private IEnumerator FadeOutAudio()
+    {
+        float startVolume = gunShot.volume;
+
+        for (float t = 0; t < fadeOutDuration; t += Time.deltaTime)
+        {
+            gunShot.volume = Mathf.Lerp(startVolume, 0, t / fadeOutDuration);
+            yield return null;
+        }
+
+        gunShot.volume = 0;
+        gunShot.Stop();
+        gunShot.volume = startVolume; // Reset the volume for the next play
     }
 
     private void ResetAnimationTriggers()

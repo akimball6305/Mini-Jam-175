@@ -12,9 +12,11 @@ public class Shooting : MonoBehaviour
     private bool isReloading = false;
 
     public float fireRate; // Automatically set using GetAnimationLength
+
     private float nextFireTime = 0f;
 
     Animator playerAnimator;
+    [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject Player;
 
     public bool IsShooting => playerAnimator.GetBool("isShooting");
@@ -71,8 +73,9 @@ public class Shooting : MonoBehaviour
 
         ResetAnimationTriggers();
         playerAnimator.SetTrigger("ShootSingle");
-
+        muzzleFlash.Play();
         PerformRaycast();
+        //muzzleFlash.Stop();
     }
 
     void ShootContinuous()
@@ -82,13 +85,15 @@ public class Shooting : MonoBehaviour
         currentammo--;
 
         playerAnimator.SetBool("isShooting", true);
-
+        muzzleFlash.Play();
         PerformRaycast();
+        
     }
 
     void StopShooting()
     {
         playerAnimator.SetBool("isShooting", false);
+        muzzleFlash.Stop();
     }
 
     IEnumerator Reload()

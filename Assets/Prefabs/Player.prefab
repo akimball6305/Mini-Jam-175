@@ -104,11 +104,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   groundDrag: 5
-  airResistance: 0
+  airResistance: 0.3
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 2
-  maxVelocity: 0
+  maxVelocity: 75
   walkSpeed: 0
   sprintSpeed: 0
   jumpKey: 32
@@ -379,8 +379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6182fe84d96604e921053cb9d308c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 100
-  sensY: 100
+  sensX: 200
+  sensY: 200
   orientation: {fileID: 684094883381700115}
 --- !u!114 &510107882104079093
 MonoBehaviour:

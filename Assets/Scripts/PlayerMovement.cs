@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Shooting shootingScript;
+
     [Header("Movement")]
     public float moveSpeed;
 
@@ -13,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
     public float maxVelocity;
+
+    Animator playerAnimator;
 
     [SerializeField] public float walkSpeed;
     [SerializeField] public float sprintSpeed;
@@ -33,10 +37,23 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
-    
+    [SerializeField] GameObject Player;
+    [SerializeField] GameObject shootingObject;
+    Animator movingAnimator;
 
     private void Start()
     {
+        if (shootingObject != null)
+        {
+            shootingScript = shootingObject.GetComponent<Shooting>();
+        }
+
+        if (shootingScript == null)
+        {
+            Debug.LogError("Shooting script not found on the assigned shootingObject!");
+        }
+
+        movingAnimator = Player.GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -84,18 +101,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        bool isShooting = shootingScript.IsShooting;
+        bool isReloading = shootingScript.IsReloading;
+
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         // on ground
         if (grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+          /*  if ((horizontalInput != 0 || verticalInput != 0) && !isShooting && !isReloading)
+            {
+                movingAnimator.SetBool("isWalking", true);
+            }
+            else
+            {
+                movingAnimator.SetBool("isWalking", false);
+            }
+            */
+        }
 
         // in air
         else if (!grounded)
-        { 
-        float airSpeed = moveSpeed * airMultiplier;
-        rb.AddForce(moveDirection.normalized * airSpeed * 10f, ForceMode.Force);
+        {
+            float airSpeed = moveSpeed * airMultiplier;
+            rb.AddForce(moveDirection.normalized * airSpeed * 10f, ForceMode.Force);
+
+            /*  // Check if the player is moving in air
+              if ((horizontalInput != 0 || verticalInput != 0) && !isShooting && !isReloading)
+              {
+                  movingAnimator.SetBool("isFalling", true);
+              }
+              else
+              {
+                  movingAnimator.SetBool("isFalling", false);
+              } */
         }
     }
 

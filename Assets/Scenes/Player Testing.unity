@@ -802,6 +802,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 0
+  grounded: 0
   orientation: {fileID: 0}
   Player: {fileID: 0}
   shootingObject: {fileID: 0}

@@ -978,6 +978,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  grounded: 0
   orientation: {fileID: 1019878018328596075}
   Player: {fileID: 1143872974694501112}
   shootingObject: {fileID: 4651681926944584541}
@@ -1044,9 +1045,10 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 327901103738274286, guid: 6a177df476fac3e4ba35c3277d593f23, type: 3}
   maxSpawnCount: 10
   spawnRange: 100
-  spawnHeightRange: 50
+  spawnHeightRange: 30
   spawnDelay: 2
   spawnExclusionRadius: 20
+  despawnThresholdY: 100
 --- !u!114 &4816430674177356334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,6 +1067,7 @@ MonoBehaviour:
   spawnHeightRange: 50
   spawnDelay: 2
   spawnExclusionRadius: 20
+  despawnThresholdY: 100
 --- !u!114 &7710733536368977021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,6 +1086,7 @@ MonoBehaviour:
   spawnHeightRange: 50
   spawnDelay: 2
   spawnExclusionRadius: 20
+  despawnThresholdY: 100
 --- !u!114 &816987903300073270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4038d8e34f32214eafc9af0011229cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 0}
+  prefabToSpawn: {fileID: 352826373957600869, guid: 923d7b50e3977ed4c830a7d4e4337a30, type: 3}
   spawnDelay: 2
   spawnHeightOffset: -30
 --- !u!1 &3435529706329350420

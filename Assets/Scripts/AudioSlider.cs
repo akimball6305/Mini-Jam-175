@@ -44,4 +44,16 @@ public class AudioSlider : MonoBehaviour
         LinearMixerVolume,
         LogrithmicMixerVolume
     }
+
+    private void Update()
+    {
+        if (slider.value == 0)
+        {
+            AudioSource.volume = 0f;
+        }
+        else
+        {
+            AudioSource.volume = 0.75f;
+        }
+    }
 }

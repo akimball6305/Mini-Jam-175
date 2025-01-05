@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
     public float maxVelocity;
+    [SerializeField] private float boostCooldown = 2f; // Cooldown time in seconds
+    private float lastBoostTime = -Mathf.Infinity;
 
     Animator playerAnimator;
 
@@ -81,6 +83,16 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxVelocity);
         Vector3 airResistanceForce = -rb.linearVelocity * airResistance;
         rb.AddForce(airResistanceForce);
+
+        if (Input.GetKeyDown(jumpKey) && rb.linearVelocity.y < 0 && Time.time >= lastBoostTime + boostCooldown)
+        {
+            float airSpeed = moveSpeed * airMultiplier;
+            Debug.Log("boosted");
+            Vector3 boostDirection = moveDirection.normalized * airSpeed * 10f; //+ Vector3.down; // Add slight downward force to emphasize falling
+            rb.AddForce(boostDirection * jumpForce * 2f, ForceMode.Acceleration);
+
+            lastBoostTime = Time.time;
+        }
     }
 
     private void MyInput()
@@ -126,8 +138,8 @@ public class PlayerMovement : MonoBehaviour
         else if (!grounded)
         {
             float airSpeed = moveSpeed * airMultiplier;
-            rb.AddForce(moveDirection.normalized * airSpeed * 10f, ForceMode.Force);
 
+            rb.AddForce(moveDirection.normalized * airSpeed * 10f, ForceMode.Force);
             /*  // Check if the player is moving in air
               if ((horizontalInput != 0 || verticalInput != 0) && !isShooting && !isReloading)
               {

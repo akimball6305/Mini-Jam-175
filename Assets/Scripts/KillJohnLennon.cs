@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 public class KillJohnLennon : MonoBehaviour
 {
     public int Respawn;
-    [SerializeField] GameObject deathUI;
-    [SerializeField] GameObject mainUI;
+   // [SerializeField] GameObject deathUI;
+    //[SerializeField] GameObject mainUI;
 
     ScoreKeeper scoreKeeper;
 
@@ -12,9 +12,10 @@ public class KillJohnLennon : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            deathUI.SetActive(true);
+            //deathUI.SetActive(true);
             scoreKeeper.StopTimer();
-            mainUI.SetActive(false);
+           // mainUI.SetActive(false);
+            SceneManager.LoadScene(Respawn);
         }
     }
 

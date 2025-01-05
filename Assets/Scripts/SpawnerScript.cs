@@ -4,82 +4,104 @@ using System.Collections.Generic;
 
 public class RandomSpawner : MonoBehaviour
 {
-    public GameObject prefabToSpawn;     // The prefab to spawn
-    public int maxSpawnCount = 5;        // Maximum number of spawns
-    public float spawnRange = 10f;       // Range within which to spawn the prefab (X and Z)
-    public float spawnHeightRange = 5f;  // Range for the Y-axis (height)
-    public float spawnDelay = 2f;        // Delay between each spawn
-    public float spawnExclusionRadius = 5f;  // Radius around the player where spawns are not allowed
+    public GameObject prefabToSpawn;
+    public int maxSpawnCount = 5;
+    public float spawnRange = 10f;
+    public float spawnHeightRange = 5f;
+    public float spawnDelay = 2f;
+    public float spawnExclusionRadius = 5f;
+    public float fallThresholdY = -5f;  // The Y value below which we start spawning (edge fall threshold)
+    public float despawnThresholdY = -10f;  // The Y value below which birds will despawn
 
-    private List<GameObject> spawnedObjects = new List<GameObject>();  // Track spawned objects
-    private Transform playerTransform;   // Reference to the player's transform
-    private Camera mainCamera;           // Reference to the main camera
-    private float previousYPosition;     // Track the previous Y position of the player
+    private List<GameObject> spawnedObjects = new List<GameObject>();
+    private Transform playerTransform;
+    private Camera mainCamera;
+
+    private float lastYPosition;
+    private bool hasFallen = false;  // Tracks if the player has fallen or started moving
 
     void Start()
     {
-        playerTransform = transform;  // Get the player's transform
-        mainCamera = Camera.main;     // Get the main camera
-        previousYPosition = playerTransform.position.y;
+        playerTransform = transform;
+        mainCamera = Camera.main;
+        lastYPosition = playerTransform.position.y;
 
-        StartCoroutine(SpawnPrefab());
+        // Initially, don't spawn anything
+    }
+
+    void Update()
+    {
+        // Check if the player falls below a certain Y threshold (indicating they've fallen off the edge)
+        if (!hasFallen && playerTransform.position.y <= fallThresholdY)
+        {
+            hasFallen = true;
+            StartCoroutine(SpawnPrefab());  // Start spawning once the player falls
+        }
+
+        // Despawn birds that are too far below the player
+        DespawnBirds();
     }
 
     private IEnumerator SpawnPrefab()
     {
-        while (true) // Keep spawning indefinitely
+        while (hasFallen && spawnedObjects.Count < maxSpawnCount)
         {
-            if (playerTransform.position.y != previousYPosition)  // Check if player's Y position is changing
+            // Find a valid position to spawn the prefab
+            Vector3 randomPosition = Vector3.zero;
+            bool validPosition = false;
+
+            while (!validPosition)
             {
-                if (spawnedObjects.Count < maxSpawnCount)
+                Vector3 offset = new Vector3(
+                    Random.Range(-spawnRange, spawnRange),
+                    Random.Range(0f, spawnHeightRange),
+                    Random.Range(-spawnRange, spawnRange)
+                );
+
+                randomPosition = playerTransform.position + offset;
+                Vector3 viewportPosition = mainCamera.WorldToViewportPoint(randomPosition);
+
+                float distanceToPlayer = Vector3.Distance(randomPosition, playerTransform.position);
+                if (viewportPosition.x >= 0 && viewportPosition.x <= 1 &&
+                    viewportPosition.y >= 0 && viewportPosition.y <= 1 &&
+                    viewportPosition.z > 0 &&
+                    distanceToPlayer >= spawnExclusionRadius)
                 {
-                    Vector3 spawnPosition = Vector3.zero;
-                    bool validPosition = false;
-
-                    while (!validPosition)
-                    {
-                        Vector3 offset = new Vector3(
-                            Random.Range(-spawnRange, spawnRange),
-                            Random.Range(0f, spawnHeightRange),
-                            Random.Range(-spawnRange, spawnRange)
-                        );
-
-                        spawnPosition = playerTransform.position + offset;
-
-                        Vector3 viewportPosition = mainCamera.WorldToViewportPoint(spawnPosition);
-
-                        float distanceToPlayer = Vector3.Distance(spawnPosition, playerTransform.position);
-                        if (viewportPosition.x >= 0 && viewportPosition.x <= 1 &&
-                            viewportPosition.y >= 0 && viewportPosition.y <= 1 &&
-                            viewportPosition.z > 0 &&
-                            distanceToPlayer >= spawnExclusionRadius)
-                        {
-                            validPosition = true;
-                        }
-                    }
-
-                    GameObject newObject = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
-                    spawnedObjects.Add(newObject);
-
-                    Debug.Log("Spawned " + prefabToSpawn.name + " at position: " + spawnPosition);
-
-                    yield return new WaitForSeconds(spawnDelay);
-                }
-
-                for (int i = spawnedObjects.Count - 1; i >= 0; i--)
-                {
-                    if (spawnedObjects[i] == null)
-                    {
-                        spawnedObjects.RemoveAt(i);
-                        Debug.Log("Object destroyed. Replacing it...");
-                        StartCoroutine(SpawnPrefab());
-                        break;
-                    }
+                    validPosition = true;
                 }
             }
 
-            previousYPosition = playerTransform.position.y;  // Update the previous Y position
-            yield return null;
+            // Spawn the new object at the random position
+            GameObject newObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
+            spawnedObjects.Add(newObject);
+
+            Debug.Log("Spawned " + prefabToSpawn.name + " at position: " + randomPosition);
+
+            // Wait for the next spawn cycle
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+
+    // Despawns birds if the player is too far below them
+    private void DespawnBirds()
+    {
+        for (int i = spawnedObjects.Count - 1; i >= 0; i--)
+        {
+            if (spawnedObjects[i] == null)
+            {
+                spawnedObjects.RemoveAt(i);  // Remove null objects (destroyed birds)
+                continue;
+            }
+
+            // Check if the bird is too far below the player
+            float distanceBelowPlayer = playerTransform.position.y - spawnedObjects[i].transform.position.y;
+            if (distanceBelowPlayer >= despawnThresholdY)
+            {
+                // If the bird is too far below, despawn it
+                Destroy(spawnedObjects[i]);
+                spawnedObjects.RemoveAt(i);
+                Debug.Log("Bird despawned due to distance: " + spawnedObjects[i].name);
+            }
         }
     }
 }

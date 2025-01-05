@@ -10,46 +10,32 @@ public class RandomSpawner : MonoBehaviour
     public float spawnHeightRange = 5f;
     public float spawnDelay = 2f;
     public float spawnExclusionRadius = 5f;
-    public float fallThresholdY = -5f;  // The Y value below which we start spawning (edge fall threshold)
-    public float despawnThresholdY = -10f;  // The Y value below which birds will despawn
+    public float despawnThresholdY = 10f;  // The Y value above which birds will despawn
 
     private List<GameObject> spawnedObjects = new List<GameObject>();
+    private List<float> spawnTimes = new List<float>();  // Track spawn times for each bird
     private Transform playerTransform;
     private Camera mainCamera;
-
-    private float lastYPosition;
-    private bool hasFallen = false;  // Tracks if the player has fallen or started moving
 
     void Start()
     {
         playerTransform = transform;
         mainCamera = Camera.main;
-        lastYPosition = playerTransform.position.y;
 
-        // Initially, don't spawn anything
-    }
-
-    void Update()
-    {
-        // Check if the player falls below a certain Y threshold (indicating they've fallen off the edge)
-        if (!hasFallen && playerTransform.position.y <= fallThresholdY)
-        {
-            hasFallen = true;
-            StartCoroutine(SpawnPrefab());  // Start spawning once the player falls
-        }
-
-        // Despawn birds that are too far below the player
-        DespawnBirds();
+        // Start spawning birds immediately
+        StartCoroutine(SpawnPrefab());
     }
 
     private IEnumerator SpawnPrefab()
     {
-        while (hasFallen && spawnedObjects.Count < maxSpawnCount)
+        // Start spawning immediately
+        while (spawnedObjects.Count < maxSpawnCount)
         {
             // Find a valid position to spawn the prefab
             Vector3 randomPosition = Vector3.zero;
             bool validPosition = false;
 
+            // Ensure a valid spawn position
             while (!validPosition)
             {
                 Vector3 offset = new Vector3(
@@ -69,20 +55,27 @@ public class RandomSpawner : MonoBehaviour
                 {
                     validPosition = true;
                 }
+
+                // Prevent infinite loop, yield if no valid position found after a few attempts
+                if (!validPosition)
+                {
+                    yield return null; // Yield until the next frame
+                }
             }
 
             // Spawn the new object at the random position
             GameObject newObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
             spawnedObjects.Add(newObject);
+            spawnTimes.Add(Time.time);  // Track the time of the spawn
 
             Debug.Log("Spawned " + prefabToSpawn.name + " at position: " + randomPosition);
 
-            // Wait for the next spawn cycle
+            // Wait for the next spawn cycle before spawning again
             yield return new WaitForSeconds(spawnDelay);
         }
     }
 
-    // Despawns birds if the player is too far below them
+    // Despawns birds if they are too far above the player
     private void DespawnBirds()
     {
         for (int i = spawnedObjects.Count - 1; i >= 0; i--)
@@ -93,15 +86,27 @@ public class RandomSpawner : MonoBehaviour
                 continue;
             }
 
-            // Check if the bird is too far below the player
-            float distanceBelowPlayer = playerTransform.position.y - spawnedObjects[i].transform.position.y;
-            if (distanceBelowPlayer >= despawnThresholdY)
+            // Check if the bird is too far above the player
+            float distanceAbovePlayer = spawnedObjects[i].transform.position.y - playerTransform.position.y;
+
+            // Only despawn birds that have been alive long enough (not immediately after spawn)
+            if (distanceAbovePlayer >= despawnThresholdY && Time.time - spawnTimes[i] >= spawnDelay)
             {
-                // If the bird is too far below, despawn it
+                // If the bird is too far above the player, despawn it
                 Destroy(spawnedObjects[i]);
                 spawnedObjects.RemoveAt(i);
-                Debug.Log("Bird despawned due to distance: " + spawnedObjects[i].name);
+                spawnTimes.RemoveAt(i);  // Remove the associated spawn time
+                Debug.Log("Bird despawned due to distance above player: " + spawnedObjects[i].name);
             }
+        }
+    }
+
+    void Update()
+    {
+        // Only call DespawnBirds periodically, not every frame
+        if (Time.frameCount % 5 == 0)  // Call every 5 frames (or adjust as needed)
+        {
+            DespawnBirds();
         }
     }
 }

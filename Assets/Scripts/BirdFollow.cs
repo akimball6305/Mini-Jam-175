@@ -18,7 +18,7 @@ public class BirdFollow : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Update is running");  // Log to confirm that Update is running
+          // Log to confirm that Update is running
 
         if (targetPlayer != null)
         {

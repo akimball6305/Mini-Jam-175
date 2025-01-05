@@ -1676,9 +1676,6 @@ GameObject:
   m_Component:
   - component: {fileID: 327901103737854984}
   - component: {fileID: 327901103726775636}
-  - component: {fileID: 4861558721150903236}
-  - component: {fileID: 7239095275234351429}
-  - component: {fileID: 5446064211851207928}
   m_Layer: 0
   m_Name: cardinal
   m_TagString: Untagged
@@ -1800,54 +1797,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0033269338, y: 0.0077829547, z: 0.000000037252903}
     m_Extent: {x: 0.05637085, y: 0.03843745, z: 0.088092335}
   m_DirtyAABB: 0
---- !u!114 &4861558721150903236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327901103738274280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a118837b63c63c4b906c7edaf5f1101, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Respawn: 0
---- !u!114 &7239095275234351429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327901103738274280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113b8b4ff0009a64d9705c1f031538f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BloodSplash: {fileID: 5904271050285367518}
-  health: 10
---- !u!135 &5446064211851207928
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327901103738274280}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.08809257
-  m_Center: {x: -0.000000047175767, y: 0.0064761825, z: -0.0033064494}
 --- !u!1 &327901103738274284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,6 +1840,9 @@ GameObject:
   - component: {fileID: 327901103730865044}
   - component: {fileID: 2108024344976349448}
   - component: {fileID: 479700961268721082}
+  - component: {fileID: 6072118558793270652}
+  - component: {fileID: 1580897375889147915}
+  - component: {fileID: 7203186666593444092}
   m_Layer: 0
   m_Name: cardinal
   m_TagString: Untagged
@@ -1963,6 +1915,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391f9fd7cce83884caa995d2e7f304c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6072118558793270652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327901103738274286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113b8b4ff0009a64d9705c1f031538f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BloodSplash: {fileID: 5904271050285367518}
+  health: 10
+--- !u!114 &1580897375889147915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327901103738274286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a118837b63c63c4b906c7edaf5f1101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Respawn: 0
+--- !u!135 &7203186666593444092
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327901103738274286}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &327901103738274288
 GameObject:
   m_ObjectHideFlags: 0

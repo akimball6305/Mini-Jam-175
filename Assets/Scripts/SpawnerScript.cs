@@ -13,13 +13,13 @@ public class RandomSpawner : MonoBehaviour
 
     private List<GameObject> spawnedObjects = new List<GameObject>();  // Track spawned objects
     private Transform playerTransform;   // Reference to the player's transform
+    private Camera mainCamera;           // Reference to the main camera
 
     void Start()
     {
-        // Get the player's transform (script is attached to player body)
-        playerTransform = transform;
+        playerTransform = transform;  // Get the player's transform
+        mainCamera = Camera.main;     // Get the main camera
 
-        // Start the spawning process
         StartCoroutine(SpawnPrefab());
     }
 
@@ -27,46 +27,42 @@ public class RandomSpawner : MonoBehaviour
     {
         while (true) // Keep spawning indefinitely
         {
-            // Check if the current spawn count is less than the maximum spawn count
             if (spawnedObjects.Count < maxSpawnCount)
             {
-                Vector3 randomPosition = Vector3.zero;
+                Vector3 spawnPosition = Vector3.zero;
                 bool validPosition = false;
 
-                // Try to generate a valid position outside the exclusion radius
                 while (!validPosition)
                 {
-                    // Generate a random offset relative to the player's current position
                     Vector3 offset = new Vector3(
-                        Random.Range(-spawnRange, spawnRange),  // Random X
-                        Random.Range(0f, spawnHeightRange),     // Random Y
-                        Random.Range(-spawnRange, spawnRange)   // Random Z
+                        Random.Range(-spawnRange, spawnRange),
+                        Random.Range(0f, spawnHeightRange),
+                        Random.Range(-spawnRange, spawnRange)
                     );
 
-                    // Calculate the spawn position based on the player's current position
-                    randomPosition = playerTransform.position + offset;
+                    spawnPosition = playerTransform.position + offset;
 
-                    // Check if the position is outside the exclusion radius
-                    float distanceToPlayer = Vector3.Distance(randomPosition, playerTransform.position);
-                    if (distanceToPlayer >= spawnExclusionRadius)
+                    Vector3 viewportPosition = mainCamera.WorldToViewportPoint(spawnPosition);
+
+                    // Ensure the spawn position is within the camera's view and outside exclusion radius
+                    float distanceToPlayer = Vector3.Distance(spawnPosition, playerTransform.position);
+                    if (viewportPosition.x >= 0 && viewportPosition.x <= 1 &&
+                        viewportPosition.y >= 0 && viewportPosition.y <= 1 &&
+                        viewportPosition.z > 0 &&
+                        distanceToPlayer >= spawnExclusionRadius)
                     {
                         validPosition = true;
                     }
                 }
 
-                // Instantiate the prefab at the calculated position
-                GameObject newObject = Instantiate(prefabToSpawn, randomPosition, Quaternion.identity);
-
-                // Add the spawned object to the list
+                GameObject newObject = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
                 spawnedObjects.Add(newObject);
 
-                Debug.Log("Spawned " + prefabToSpawn.name + " at position: " + randomPosition);
+                Debug.Log("Spawned " + prefabToSpawn.name + " at position: " + spawnPosition);
 
-                // Wait for the specified delay before spawning the next prefab
                 yield return new WaitForSeconds(spawnDelay);
             }
 
-            // Check if any spawned object is destroyed, and replace it
             for (int i = spawnedObjects.Count - 1; i >= 0; i--)
             {
                 if (spawnedObjects[i] == null)

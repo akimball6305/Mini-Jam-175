@@ -15,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
     public float maxVelocity;
-    [SerializeField] private float boostCooldown = 2f; // Cooldown time in seconds
+    [SerializeField] private float boostCooldown = 3f; // Cooldown time in seconds
+    //[SerializeField] private float stopCooldown = 5f;
     private float lastBoostTime = -Mathf.Infinity;
 
     Animator playerAnimator;
@@ -108,6 +109,18 @@ public class PlayerMovement : MonoBehaviour
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+        //speed up 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed = moveSpeed + 5;
+            airResistance = airResistance - 0.1f;
+            maxVelocity = maxVelocity + 10;
+        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed = moveSpeed - 5;
+            airResistance = airResistance + 0.1f;
+            maxVelocity = maxVelocity - 10;
         }
     }
 

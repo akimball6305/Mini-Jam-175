@@ -4,6 +4,8 @@ public class Target : MonoBehaviour
 {
     [SerializeField] ParticleSystem BloodSplash;  // Assign the prefab in Inspector
 
+    ScoreKeeper scoreKeeper;
+
     public float health = 10f;
 
     public void TakeDamage(float amount)
@@ -35,6 +37,11 @@ public class Target : MonoBehaviour
         else
         {
             Debug.LogWarning("BloodSplash particle system not assigned!");
+        }
+
+        if (ScoreKeeper.instance != null)
+        {
+            ScoreKeeper.instance.AddScore(100);
         }
 
         // Destroy the target object

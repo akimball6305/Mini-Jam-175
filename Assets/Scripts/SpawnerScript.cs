@@ -11,6 +11,7 @@ public class RandomSpawner : MonoBehaviour
     public float spawnDelay = 2f;
     public float spawnExclusionRadius = 5f;
     public float fallThresholdY = -5f;  // The Y value below which we start spawning (edge fall threshold)
+    public float despawnThresholdY = -10f;  // The Y value below which birds will despawn
 
     private List<GameObject> spawnedObjects = new List<GameObject>();
     private Transform playerTransform;
@@ -36,6 +37,9 @@ public class RandomSpawner : MonoBehaviour
             hasFallen = true;
             StartCoroutine(SpawnPrefab());  // Start spawning once the player falls
         }
+
+        // Despawn birds that are too far below the player
+        DespawnBirds();
     }
 
     private IEnumerator SpawnPrefab()
@@ -75,6 +79,29 @@ public class RandomSpawner : MonoBehaviour
 
             // Wait for the next spawn cycle
             yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+
+    // Despawns birds if the player is too far below them
+    private void DespawnBirds()
+    {
+        for (int i = spawnedObjects.Count - 1; i >= 0; i--)
+        {
+            if (spawnedObjects[i] == null)
+            {
+                spawnedObjects.RemoveAt(i);  // Remove null objects (destroyed birds)
+                continue;
+            }
+
+            // Check if the bird is too far below the player
+            float distanceBelowPlayer = playerTransform.position.y - spawnedObjects[i].transform.position.y;
+            if (distanceBelowPlayer >= despawnThresholdY)
+            {
+                // If the bird is too far below, despawn it
+                Destroy(spawnedObjects[i]);
+                spawnedObjects.RemoveAt(i);
+                Debug.Log("Bird despawned due to distance: " + spawnedObjects[i].name);
+            }
         }
     }
 }

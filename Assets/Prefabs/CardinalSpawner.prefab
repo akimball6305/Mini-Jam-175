@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2249a80118bce459cf234ac82c64bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 327901103738274286, guid: 6a177df476fac3e4ba35c3277d593f23, type: 3}
+  prefabToSpawn: {fileID: 1699765651658144605, guid: 15ea1a6b6bc32364cb573953190118be, type: 3}
   maxSpawnCount: 5
   spawnRange: 10
   spawnHeightRange: 5

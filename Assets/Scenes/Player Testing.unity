@@ -443,6 +443,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2282343556468073055, guid: d207bbef0c4a526419b9a80f554fc200, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2282343556468073055, guid: d207bbef0c4a526419b9a80f554fc200, type: 3}
       propertyPath: maxSpawnCount
       value: 1
       objectReference: {fileID: 0}
@@ -1174,6 +1178,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c482368f817d2f04284f670fe119bd54, type: 3}
+--- !u!1001 &673314588506376115
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2496133459239627389, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_Name
+      value: DragonSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.417334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -35.141155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -67.80546
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4368523241666345926, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bf4eb6a17b8fb84389950862026cf4d, type: 3}
 --- !u!1001 &982520247729645170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1323,6 +1384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cardinal
       objectReference: {fileID: 0}
+    - target: {fileID: 2108024344976349448, guid: 6a177df476fac3e4ba35c3277d593f23, type: 3}
+      propertyPath: speed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1336,6 +1401,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2282343556468073055, guid: d207bbef0c4a526419b9a80f554fc200, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6132543471577052480, guid: d207bbef0c4a526419b9a80f554fc200, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.417334
@@ -1393,6 +1462,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 388683136314218308, guid: e22e8eee635c30b40ba1048783709b7f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2070887302390413520, guid: e22e8eee635c30b40ba1048783709b7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.417334
@@ -1571,6 +1644,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1306058940416087472, guid: 959c47ca177eb5343869495567147827, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4155498669835972086, guid: 959c47ca177eb5343869495567147827, type: 3}
       propertyPath: m_Name
       value: CrowSpawner
@@ -1633,6 +1710,7 @@ SceneRoots:
   - {fileID: 697048176}
   - {fileID: 1246133945}
   - {fileID: 3752337835066721179}
+  - {fileID: 673314588506376115}
   - {fileID: 8935616762509429102}
   - {fileID: 2566487600633362215}
   - {fileID: 969640504}

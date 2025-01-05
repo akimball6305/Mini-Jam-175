@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6132543471577052480}
-  - component: {fileID: 7497317254651295643}
   - component: {fileID: 2282343556468073055}
   m_Layer: 0
   m_Name: RobinSpawner
@@ -33,23 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7497317254651295643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8382481330507371829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2249a80118bce459cf234ac82c64bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 0}
-  maxSpawnCount: 5
-  spawnRange: 10
-  spawnHeightRange: 5
-  spawnDelay: 2
 --- !u!114 &2282343556468073055
 MonoBehaviour:
   m_ObjectHideFlags: 0

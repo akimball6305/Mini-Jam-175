@@ -179,7 +179,7 @@ MonoBehaviour:
   m_text: 'Developed By: Aiden Kimball and Brady Swason
 
     Music Developed By:
-    Emerson'
+    Emerson Welsh'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 208ff9170d342274da69424e227cd27e, type: 2}
   m_sharedMaterial: {fileID: -674201770246330178, guid: 208ff9170d342274da69424e227cd27e, type: 2}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 22894025}
   - component: {fileID: 22894024}
   m_Layer: 5
-  m_Name: 'MusicVolumeText '
+  m_Name: 'MasterVolumeText '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music Volume
+  m_text: Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 208ff9170d342274da69424e227cd27e, type: 2}
   m_sharedMaterial: {fileID: -674201770246330178, guid: 208ff9170d342274da69424e227cd27e, type: 2}
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 227555763}
   - component: {fileID: 227555762}
   m_Layer: 5
-  m_Name: MusicVolume Number
+  m_Name: MasterVolume Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1097,7 +1097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &227826796
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1387,7 +1387,7 @@ RectTransform:
   m_Father: {fileID: 429213279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2883,6 +2883,103 @@ MonoBehaviour:
   movementVector: {x: 0, y: 100, z: 0}
   period: 10
   movementFactor: 0
+--- !u!82 &768642994
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768642988}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 6107e1c864d35b04f9beed8eb61a1a2b, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 3779c98f70240394cb07a955209e9502, type: 3}
+  m_Resource: {fileID: 8300000, guid: 3779c98f70240394cb07a955209e9502, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &770763769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3524,7 +3621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &922749552
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3814,7 +3911,7 @@ RectTransform:
   m_Father: {fileID: 1069628366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4009,7 +4106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1051483139
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4836,13 +4933,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336831405}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20ca616fe7c54374fbeb96fa7cae0056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mixer: {fileID: 24100000, guid: 47dbe1a54fdce3a438db8bb06c6e2f91, type: 2}
-  AudioSource: {fileID: 0}
+  Mixer: {fileID: 24100000, guid: 6107e1c864d35b04f9beed8eb61a1a2b, type: 2}
+  AudioSource: {fileID: 768642994}
   ValueText: {fileID: 398098202}
   MixMode: 2
   slider: {fileID: 1336831407}
@@ -6059,7 +6156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1795671638
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7165,6 +7262,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: ff3e8c3aad864db4394551f29cc6f224, type: 3}
       insertIndex: -1
       addedObject: {fileID: 768642993}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: ff3e8c3aad864db4394551f29cc6f224, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 768642994}
   m_SourcePrefab: {fileID: 100100000, guid: ff3e8c3aad864db4394551f29cc6f224, type: 3}
 --- !u!1 &1989284254
 GameObject:

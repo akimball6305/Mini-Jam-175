@@ -16,6 +16,7 @@ public class KillJohnLennon : MonoBehaviour
             //scoreKeeper.StopTimer();
            // mainUI.SetActive(false);
             SceneManager.LoadScene(Respawn);
+
         }
     }
 

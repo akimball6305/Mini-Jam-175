@@ -15,6 +15,8 @@ public class WinSceneManager : MonoBehaviour
         else
         {
             Debug.LogError("ScoreKeeper instance not found!");
+            int finalScore = -1;
+            finalScoreText.text = "Final Score: " + finalScore.ToString();
         }
     }
 }

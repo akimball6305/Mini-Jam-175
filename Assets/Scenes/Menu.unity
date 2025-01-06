@@ -1387,7 +1387,7 @@ RectTransform:
   m_Father: {fileID: 429213279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2890,7 +2890,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768642988}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 6107e1c864d35b04f9beed8eb61a1a2b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3779c98f70240394cb07a955209e9502, type: 3}
@@ -3313,7 +3313,7 @@ MonoBehaviour:
   Mixer: {fileID: 24100000, guid: 47dbe1a54fdce3a438db8bb06c6e2f91, type: 2}
   AudioSource: {fileID: 770763771}
   ValueText: {fileID: 227555762}
-  MixMode: 2
+  MixMode: 0
   slider: {fileID: 833509575}
 --- !u!114 &833509575
 MonoBehaviour:
@@ -3911,7 +3911,7 @@ RectTransform:
   m_Father: {fileID: 1069628366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6058,7 +6058,10 @@ MonoBehaviour:
 
     LMB - Shoot
 
-    Space - Jump
+    Space - Jump/Boost
+
+    Left Shift
+    - Speedup
 
 
 '
@@ -6156,7 +6159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1795671638
 RectTransform:
   m_ObjectHideFlags: 0

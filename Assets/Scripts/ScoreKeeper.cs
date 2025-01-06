@@ -31,7 +31,8 @@ public class ScoreKeeper : MonoBehaviour
 
     private void Start()
     {
-        UpdateUI();
+        ResetGame();
+
     }
 
     private void Update()
@@ -101,4 +102,18 @@ public class ScoreKeeper : MonoBehaviour
     {
         return finalScore;
     }
+
+    public void ResetGame()
+    {
+        // Reset the score and timer
+        score = 0;
+        time = 0;
+
+        // Reset the timer running state if necessary
+        isTimerRunning = true;
+
+        // Update the UI
+        UpdateUI();
+    }
+
 }

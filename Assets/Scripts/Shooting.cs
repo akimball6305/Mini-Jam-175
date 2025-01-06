@@ -19,6 +19,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject Player;
     AudioSource gunShot;
+    [SerializeField] GameObject muzzleAudio;
     [SerializeField] AudioSource reload;
 
     public bool IsShooting => playerAnimator.GetBool("isShooting");
@@ -31,7 +32,7 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
-        gunShot = GetComponent<AudioSource>();
+        gunShot = muzzleAudio.GetComponent<AudioSource>();
         currentammo = maxammo;
         playerAnimator = Player.GetComponent<Animator>();
 

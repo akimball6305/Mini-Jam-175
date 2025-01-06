@@ -11,11 +11,18 @@ public class AudioSlider : MonoBehaviour
     [SerializeField] private AudioMixMode MixMode;
     [SerializeField] private Slider slider;
 
+    private const string VolumePrefKey = "AudioVolume"; // Key for saving/loading volume
+
     private void Start()
     {
         if (slider != null)
         {
-            slider.value = 1f; // Set the slider value to 1
+            // Load saved value from PlayerPrefs, default to 1.0f if not set
+            float savedValue = PlayerPrefs.GetFloat(VolumePrefKey, 1f);
+            slider.value = savedValue;
+
+            // Update audio settings based on the saved value
+            ApplyVolume(savedValue);
         }
         else
         {
@@ -25,19 +32,33 @@ public class AudioSlider : MonoBehaviour
 
     public void OnChangeSlider(float value)
     {
+        // Update UI text to show current slider value
         ValueText.SetText($"{value.ToString("N2")}");
 
-        switch(MixMode)
+        // Apply the volume settings
+        ApplyVolume(value);
+
+        // Save the value to PlayerPrefs
+        PlayerPrefs.SetFloat(VolumePrefKey, value);
+        PlayerPrefs.Save();
+    }
+
+    private void ApplyVolume(float value)
+    {
+        switch (MixMode)
         {
             case AudioMixMode.LinearAudioSourceVolume:
-                AudioSource.volume = value; break;
+                AudioSource.volume = value;
+                break;
             case AudioMixMode.LinearMixerVolume:
-                Mixer.SetFloat("Volume", (-80 + value * 80)); break;
+                Mixer.SetFloat("Volume", -80 + value * 80); // Linear mapping
+                break;
             case AudioMixMode.LogrithmicMixerVolume:
-                Mixer.SetFloat("Volume", Mathf.Log10(value) * 20); break;
-
+                Mixer.SetFloat("Volume", Mathf.Log10(value) * 20); // Logarithmic mapping
+                break;
         }
     }
+
     public enum AudioMixMode
     {
         LinearAudioSourceVolume,
@@ -47,13 +68,9 @@ public class AudioSlider : MonoBehaviour
 
     private void Update()
     {
-        if (slider.value == 0)
+        if (slider != null && slider.value == 0)
         {
             AudioSource.volume = 0f;
-        }
-        else
-        {
-            AudioSource.volume = 0.75f;
         }
     }
 }

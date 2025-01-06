@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    ScoreKeeper scoreKeeper;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -23,6 +25,8 @@ public class MainMenu : MonoBehaviour
 
         // Make the cursor invisible
         Cursor.visible = false;
+
+        Destroy(scoreKeeper);
     }
 
     public void QuitGame()

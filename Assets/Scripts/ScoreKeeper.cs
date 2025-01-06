@@ -1,16 +1,19 @@
 using UnityEngine;
 using TMPro;
-using System;
 
 public class ScoreKeeper : MonoBehaviour
 {
     public static ScoreKeeper instance; // Singleton instance for easy access
 
-    public int score = 0; // Player's score
+    public int score = 0; // Player's base score
     public float time = 0; // Timer
     public bool isTimerRunning = true;
+
     public TextMeshProUGUI scoreText; // UI text element to display the score
-    public TextMeshProUGUI timerText;//UI text element to display the timer
+    public TextMeshProUGUI timerText; // UI text element to display the timer
+
+    public float timeBonusMultiplier = 10f; // Multiplier to scale time bonus
+    public int finalScore = 0; // Final calculated score for the win scene
 
     private void Awake()
     {
@@ -30,11 +33,12 @@ public class ScoreKeeper : MonoBehaviour
     {
         UpdateUI();
     }
+
     private void Update()
     {
         if (isTimerRunning)
         {
-            time += Time.deltaTime; // Increment the timer by the time elapsed since the last frame
+            time += Time.deltaTime; // Increment the timer
             UpdateTimerUI();
         }
     }
@@ -60,6 +64,7 @@ public class ScoreKeeper : MonoBehaviour
             scoreText.text = "Score: " + score.ToString();
         }
     }
+
     private void UpdateUI()
     {
         UpdateScoreUI();
@@ -82,5 +87,18 @@ public class ScoreKeeper : MonoBehaviour
     {
         time = 0;
         UpdateTimerUI();
+    }
+
+    public int CalculateFinalScore()
+    {
+        // Formula for final score
+        float timeBonus = Mathf.Max(0, (1 / time) * timeBonusMultiplier); // Higher bonus for shorter times
+        finalScore = Mathf.RoundToInt(score + timeBonus);
+        return finalScore;
+    }
+
+    public int GetFinalScore()
+    {
+        return finalScore;
     }
 }
